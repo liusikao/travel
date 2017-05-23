@@ -17,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.mldn.travel.service.back.IDeptServiceBack;
 import cn.mldn.travel.service.back.IEmpServiceBack;
+import cn.mldn.travel.service.back.ILevelServiceBack;
+import cn.mldn.travel.vo.Dept;
 import cn.mldn.travel.vo.Emp;
+import cn.mldn.travel.vo.Level;
 import cn.mldn.util.action.abs.AbstractBaseAction;
-import cn.mldn.util.enctype.PasswordUtil;
 import cn.mldn.util.web.FileUtils;
 import net.sf.json.JSONObject;
 
@@ -32,6 +34,8 @@ public class EmpActionBack extends AbstractBaseAction {
 	private IEmpServiceBack iEmpService;
     @Resource
     private IDeptServiceBack iDeptService ;
+    @Resource
+    private ILevelServiceBack iLevelService ;
     
 	@RequestMapping("add_pre")
 	@RequiresUser
@@ -61,7 +65,9 @@ public class EmpActionBack extends AbstractBaseAction {
 			String fileName = fileUtils.createFileName();
 			vo.setPhoto(fileName);
 			fileUtils.saveFile(request, "upload", fileName);
-			
+			if(iEmpService.findMgr(vo.getDid()) == null ){
+				vo.setIneid(iEmpService.findMgr(vo.getDid()).getLid());
+			}
 			iEmpService.add(vo);
 			
 			super.setUrlAndMsg(request, "emp.add.action", "vo.add.success", FLAG);
@@ -81,10 +87,11 @@ public class EmpActionBack extends AbstractBaseAction {
 	public ModelAndView editPre(String eid) {
 		ModelAndView mav = new ModelAndView(super.getUrl("emp.edit.page"));
 		Emp vo = iEmpService.findByEid(eid) ;
-		String password =  PasswordUtil.getPassword(vo.getPassword());
-		System.out.println(password);
-	    vo.setPassword(password);
+		
+	  
 		mav.addObject("emp",vo);
+		mav.addObject("allDept", iDeptService.list());
+		mav.addObject("allLevel", iDeptService.listLevel());
 		
 		return mav;
 	}
@@ -106,8 +113,14 @@ public class EmpActionBack extends AbstractBaseAction {
 	public ModelAndView get(String eid, HttpServletResponse response) {
 		
 		Emp vo = iEmpService.findByEid(eid);
+		Dept dept = iDeptService.findByEid(eid);
+		Level level = iLevelService.findByLid(vo.getLid());
+		
+		
 		JSONObject obj =new JSONObject() ;		
 		obj.put("emp", vo);
+		obj.put("dept", dept);
+		obj.put("level", level);
 		String emp =    obj.toString()  ;
 		System.out.println(emp);
 		

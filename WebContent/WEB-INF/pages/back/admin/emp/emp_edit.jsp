@@ -42,7 +42,7 @@
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
 									<input type="text" id="password" name="password" class="form-control"
-										placeholder="请输入雇员登录密码" value="${emp.password}">
+										placeholder="请输入雇员登录密码" value="">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="passwordMsg"></div>
@@ -53,7 +53,7 @@
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
 									<input type="text" id="ename" name="ename" class="form-control"
-										placeholder="请输入雇员真实姓名">
+										placeholder="请输入雇员真实姓名" value="${emp.ename}">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="enameMsg"></div>
@@ -64,7 +64,7 @@
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
 									<input type="text" id="phone" name="phone" class="form-control"
-										placeholder="请输入雇员联系电话">
+										placeholder="请输入雇员联系电话" value="${emp.phone}">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="phoneMsg"></div>
@@ -75,9 +75,10 @@
 								<div class="col-md-5">
 									<select id="did" name="did" class="form-control">
 										<option value="">====== 请选择所在部门 ======</option>
-										<option value="1">技术部</option>
-										<option value="2">财务部</option>
-										<option value="3">市场部</option>
+										<c:forEach items="${allDept}" var="dept">
+										   	<option value="${dept.did}"  ${dept.did==emp.did ? "selected":"" }>${dept.dname}</option>
+
+										</c:forEach>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
@@ -89,9 +90,11 @@
 								<div class="col-md-5">
 									<select id="jid" name="jid" class="form-control">
 										<option value="">====== 请选择雇员职务 ======</option>
-										<option value="1">总监</option>
-										<option value="2">部门经理</option>
-										<option value="3">部门员工</option>
+										<c:forEach items="${allLevel}" var="level">
+
+											<option value="${level.lid}" ${level.lid==emp.lid ? "selected":"" }>${level.title}</option>
+											
+										</c:forEach>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
@@ -115,7 +118,7 @@
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
 									<textarea id="note" name="note"
-										class="form-control" placeholder="请输入雇员的面试情况" rows="10"></textarea>
+										class="form-control" placeholder="请输入雇员的面试情况" rows="10" >${emp.note}</textarea>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="noteMsg"></div>
