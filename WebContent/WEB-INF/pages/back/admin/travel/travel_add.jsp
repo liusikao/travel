@@ -43,7 +43,7 @@
 								<div class="col-md-5">
 									<select id="iid" name="iid" class="form-control">
 										<option value="">====== 请选择外出类型 ======</option>
-										<option value="1">测试</option>
+										
 										<c:forEach items="${allItems}" var="item">
 											<option value="${item.iid}">${item.title}</option>
 										</c:forEach>
@@ -79,7 +79,7 @@
 								<label class="col-md-3 control-label" for="destination">出差目的地：</label>
 								<div class="col-md-5">
 									<!-- 定义表单输入组件 -->
-									<input type="text" id="destination" name="destination" class="form-control"
+									<input type="text" id="destination" name="dest" class="form-control"
 										placeholder="请填写本次出差的目的地">
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
@@ -101,6 +101,7 @@
 								<div class="col-md-5 col-md-offset-3">
 									<button type="submit" class="btn btn-primary">增加</button>
 									<button type="reset" class="btn btn-warning">重置</button>
+									<input type="hidden" name="seid" value="${emp.eid}">
 								</div>
 							</div>
 						</fieldset>

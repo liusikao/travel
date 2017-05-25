@@ -52,6 +52,7 @@ public class EmpRealm extends AuthorizingRealm {
 		SecurityUtils.getSubject().getSession().setAttribute("ename", emp.getEname());
 		SecurityUtils.getSubject().getSession().setAttribute("photo", emp.getPhoto());
 		SecurityUtils.getSubject().getSession().setAttribute("level", level.getLevel());
+		SecurityUtils.getSubject().getSession().setAttribute("eid", emp.getEid());
 		return auth;
 	}
 

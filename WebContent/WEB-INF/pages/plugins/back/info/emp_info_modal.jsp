@@ -12,7 +12,7 @@
 				<div id="costBasicInfo">
 					<div class="row">
 						<div class="col-xs-3">
-							<img src="upload/member/nophoto.png" style="width:200px;">
+							<img src="" style="width:200px;"  id="ppp">
 						</div>
 						<div class="col-xs-8">
 							<table class="table table-condensed" style="width:700px;">
@@ -40,7 +40,10 @@
 									<td><strong>备注信息：</strong></td>
 									<td id="baby"><pre class="pre-scrollable" style="width:400px;height:210px;"></pre></td>
 								</tr>
+								
 							</table>
+							
+							<button id="jj">领导降级</button>
 						</div>
 					</div>
 				</div>

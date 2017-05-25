@@ -83,21 +83,21 @@
 								<!-- 定义表单错误提示显示元素 -->
 								<div class="col-md-4" id="didMsg">${errors['did']}</div>
 							</div>
-							<div class="form-group" id="jidDiv">
+							<div class="form-group" id="lidDiv">
 								<!-- 定义表单提示文字 -->
-								<label class="col-md-3 control-label" for="jid">出差类型：</label>
+								<label class="col-md-3 control-label" for="lid">出差类型：</label>
 								<div class="col-md-5">
-									<select id="jid" name="jid" class="form-control">
+									<select id="lid" name="lid" class="form-control">
 										<option value="">====== 请选择雇员职务 ======</option>
-										<c:forEach items="${allLevel}" var="level">
-
-											<option value="${level.lid}">${level.title}</option>
-											
+										<c:forEach items="${allLevel}" var="lev">
+                                          <c:if test="${lev.level ge level}">
+												<option value="${lev.lid}" ${"staff" == lev.lid ? "selected" : ""}>${lev.title}</option>
+											</c:if>
 										</c:forEach>
 									</select>
 								</div>
 								<!-- 定义表单错误提示显示元素 -->
-								<div class="col-md-4" id="jidMsg">${errors['jid']}</div>
+								<div class="col-md-4" id="lidMsg">${errors['lid']}</div>
 								
 								
 								

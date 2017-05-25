@@ -38,10 +38,8 @@
 									<td class="text-center"><c:forEach items="${allMgr}"
 											var="emp">
 											<c:if test="${emp.eid==dept.eid}">	
-											<span id="eid-${emp.eid}" style="cursor: pointer;">
-																						
-													${emp.ename} 
-											
+											<span id="eid-${emp.eid}" style="cursor: pointer;">																						
+													${emp.ename} 										
 											</span>
 											</c:if>
 										</c:forEach> </td>

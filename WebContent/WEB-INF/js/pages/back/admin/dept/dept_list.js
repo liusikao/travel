@@ -1,4 +1,5 @@
 $(function() {
+	
 	$("button[id^=edit-]").each(function() {
 		$(this).on("click", function() {
 			;
@@ -37,13 +38,28 @@ $(function() {
 			}, function(data) {
 				$("#hello").text(data.emp.ename);
 				$("#phone").text(data.emp.phone);
-				$("#time").text(data.emp.hiredate.date);
+				 
+				$("#time").text(  new Date(data.emp.hiredate.time).format("yyyy-MM-dd"));
 				$("#baby").text(data.emp.note);
                 $("#dname").text(data.dept.dname);
-                $("#jjj").text(data.level.title)
+                $("#jjj").text(data.level.title);
+                $("#ppp").attr("src","upload/member/"+data.emp.photo);
+                 
 			}, "json");
 			$("#userInfo").modal("toggle");
 		});
 	});
 
+	
+	$("#jj").on("click",function(){
+		
+	   
+		$.post("pages/back/admin/emp/editMgr.action",)
+		
+	})
+	
+	
+	
+	
+	
 });
